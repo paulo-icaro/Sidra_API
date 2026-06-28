@@ -16,14 +16,14 @@ library(dplyr)        # Library for data manipulation
 # --------------------------- #
 # --- API Access Function --- #
 # --------------------------- #
-ipeadata_api = function(url, httr = TRUE){
+sidra_api = function(url, httr = TRUE){
   flag = 0
   
   # --- API Connection Using httr --- #
   if(httr == TRUE){
     
     # --- API Connection --- #
-    api_connection = tryCatch(expr = GET(url = url), 
+    api_connection = tryCatch(expr = GET(url = url, add_headers(Accept = "application/json")), 
                               error = function(e){return(NULL)})
     
     # --- Connection Flags --- #
@@ -48,7 +48,7 @@ ipeadata_api = function(url, httr = TRUE){
 
     # --- Converting Data to a Readable Format --- #
     api_connection = rawToChar(api_connection$content)             
-    api_connection = fromJSON(api_connection, flatten = TRUE)$value
+    api_connection = fromJSON(api_connection, flatten = TRUE)
     
     # --- Output --- #
     return(api_connection)
