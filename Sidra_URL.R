@@ -11,7 +11,7 @@
 # ------------------------------ #
 # --- URL Generator Function --- #
 # ------------------------------ #
-sidra_url = function(table, time_interval, variables, territorial_perspective, territorial_level, kind, header, fields, decimals){
+sidra_url = function(table, time_interval, variables, territorial_perspective, territorial_level, kind, headers, fields, decimals){
   
   # --- Base URL --- #
   base_url = "https://apisidra.ibge.gov.br/values/t/"
@@ -37,19 +37,19 @@ sidra_url = function(table, time_interval, variables, territorial_perspective, t
   if(!missing(territorial_perspective)){territorial_perspective = paste0('/g/', territorial_perspective)} else {territorial_perspective = NULL}
   
   # Territorial Level (Optional)
-  if(missing(territorial_perspective)){territorial_perspective = NULL}
+  if(missing(territorial_level)){territorial_level = NULL} else {territorial_level = paste0('/', territorial_level)}
   
   # Header (Optional)
-  if(missing(header)){header = NULL}
+  if(missing(headers)){headers = NULL} else {headers = paste0('/', header)}
   
   # Field (Optional)
-  if(missing(fields)){fields = NULL}
+  if(missing(fields)){fields = NULL} else {fields = paste0('/', fields)}
   
   # Decimal Places (Optional)
-  if(missing(decimals)){decimals = NULL} else if (!decimals %in% list('s', 'm') || !decimals %in% seq_along(0:9)){decimals = paste0('/d/', decimals)}
+  if(missing(decimals)){decimals = NULL} else if (!decimals %in% list('s', 'm') || !decimals %in% seq_along(0:9)){decimals = paste0('/d/', decimals)} else {stop('Quantidade de casas decimais inválidas !')}
   
   # --- Generate URL --- #
-  sidra_url = paste0(base_url, table, time_interval, variables, territorial_perspective, territorial_level, header, fields, decimals)
+  sidra_url = paste0(base_url, table, time_interval, variables, territorial_perspective, territorial_level, headers, fields, decimals, '?formato=json')
   
   
   # --- Output --- #

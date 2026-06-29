@@ -23,7 +23,7 @@ sidra_api = function(url, httr = TRUE){
   if(httr == TRUE){
     
     # --- API Connection --- #
-    api_connection = tryCatch(expr = GET(url = url, add_headers(Accept = "application/json")), 
+    api_connection = tryCatch(expr = GET(url = url), 
                               error = function(e){return(NULL)})
     
     # --- Connection Flags --- #
