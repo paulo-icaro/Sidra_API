@@ -23,7 +23,7 @@ sidra_api = function(url, httr = TRUE){
   if(httr == TRUE){
     
     # --- API Connection --- #
-    api_connection = tryCatch(expr = GET(url = url), 
+    api_connection = tryCatch(expr = GET(url = url, add_headers(Accept = "application/json")), 
                               error = function(e){return(NULL)})
     
     # --- Connection Flags --- #
@@ -59,7 +59,7 @@ sidra_api = function(url, httr = TRUE){
   else if (httr == FALSE) {
     
     # --- API Connection --- #
-    api_connection = tryCatch(expr = request(base_url = url) %>% req_perform(),
+    api_connection = tryCatch(expr = request(base_url = url) %>% req_headers(Accept = 'application/json') %>% req_perform(),
                               error = function(e){return(NULL)})
     
     # --- Connection Flags --- #
@@ -84,7 +84,7 @@ sidra_api = function(url, httr = TRUE){
 
     # --- Converting Data to a Readable Format --- #
     api_connection = rawToChar(api_connection$body)
-    api_connection = fromJSON(api_connection, flatten = TRUE)$value
+    api_connection = fromJSON(api_connection, flatten = TRUE)
     
     # --- Output --- #
     return(api_connection)

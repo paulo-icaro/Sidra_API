@@ -17,7 +17,7 @@ sidra_url = function(table, time_interval, variables, territorial_perspective, t
   base_url = "https://apisidra.ibge.gov.br/values/t/"
   
   # --- Exclusionary Required Arguments Flag --- #
-  if(!missing(territorial_perspective) && (!missing(territorial_level))){
+  if(!is.null(territorial_perspective) && !is.null(territorial_level)){
     stop(
       paste0(
       '\nArgumentos Visão Territorial e Nível Territorial não podem ser especificados simultaneamente. Especifique apenas um dos critérios.',
@@ -28,28 +28,29 @@ sidra_url = function(table, time_interval, variables, territorial_perspective, t
   # --- Arguments --- #
   
   # Time Interval (Required)
-  if(!missing(time_interval)){time_interval = paste0('/p/', time_interval)} else {time_interval = '/p/last'}
+  if(!is.null(time_interval)){time_interval = paste0('/p/', time_interval)} else {time_interval = '/p/last'}
   
   # Variables Name (Optional)
-  if(!missing(variables)){variables =  paste0('/v/', variables)} else {variables = '/v/all'}
+  if(!is.null(variables)){variables =  paste0('/v/', variables)} else {variables = '/v/all'}
   
   # Territorial Perspective (Optional)
-  if(!missing(territorial_perspective)){territorial_perspective = paste0('/g/', territorial_perspective)} else {territorial_perspective = NULL}
+  if(!is.null(territorial_perspective)){territorial_perspective = paste0('/g/', territorial_perspective)} else {territorial_perspective = NULL}
   
   # Territorial Level (Optional)
-  if(missing(territorial_level)){territorial_level = NULL} else {territorial_level = paste0('/', territorial_level)}
+  if(is.null(territorial_level)){territorial_level = NULL} else {territorial_level = paste0('/', territorial_level)}
   
   # Header (Optional)
-  if(missing(headers)){headers = NULL} else {headers = paste0('/', header)}
+  if(is.null(headers)){headers = NULL} else {headers = paste0('/', header)}
   
   # Field (Optional)
-  if(missing(fields)){fields = NULL} else {fields = paste0('/', fields)}
+  if(is.null(fields)){fields = NULL} else {fields = paste0('/', fields)}
   
   # Decimal Places (Optional)
-  if(missing(decimals)){decimals = NULL} else if (!decimals %in% list('s', 'm') || !decimals %in% seq_along(0:9)){decimals = paste0('/d/', decimals)} else {stop('Quantidade de casas decimais inválidas !')}
+  if(is.null(decimals)){decimals = NULL} else if (!decimals %in% list('s', 'm') || !decimals %in% seq_along(0:9)){decimals = paste0('/d/', decimals)} else {stop('Quantidade de casas decimais inválidas !')}
+  
   
   # --- Generate URL --- #
-  sidra_url = paste0(base_url, table, time_interval, variables, territorial_perspective, territorial_level, headers, fields, decimals, '?formato=json')
+  sidra_url = paste0(base_url, table, time_interval, variables, territorial_perspective, territorial_level, headers, fields, decimals)
   
   
   # --- Output --- #
