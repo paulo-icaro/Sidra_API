@@ -13,21 +13,21 @@ sidra_query = function(query_list, source_github = TRUE){
   # --- Source Auxiliary Functions --- #
   # ---------------------------------- #
   if(source_github == TRUE){
-    tryCatch(expr = suppressWarnings(source('Sidra_API')),
-             error = function(e){message('Não foi possível acessar a função Sidra_API')})
+    tryCatch(expr = suppressWarnings(source('https://raw.githubusercontent.com/paulo-icaro/Sidra_API/refs/heads/main/Sidra_API.R')),
+             error = function(e){message('Não foi possível acessar a função Sidra_API via github')})
     Sys.sleep(1.5)
     
     tryCatch(expr = suppressWarnings(source('https://raw.githubusercontent.com/paulo-icaro/Sidra_API/refs/heads/main/Sidra_URL.R')),
-      error = function(e){message('Não foi possível acessar a função Sidra_URL')})
+      error = function(e){message('Não foi possível acessar a função Sidra_URL via github')})
     Sys.sleep(1.5)
     
   } else if(source_github == FALSE){
     tryCatch(expr = suppressWarnings(source('Sidra_API.R')),
-             error = function(e){message('Não foi possível acessar a função Sidra_API')})
+             error = function(e){message('Não foi possível acessar a função Sidra_API localmente')})
     Sys.sleep(1.5)
     
     tryCatch(expr = suppressWarnings(source('Sidra_URL.R')),
-      error = function(e){message('Não foi possível acessar a função Sidra_URL')})
+      error = function(e){message('Não foi possível acessar a função Sidra_URL localmente')})
     Sys.sleep(1.5)
   
   } else{
