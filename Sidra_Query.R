@@ -57,7 +57,7 @@ sidra_query = function(query_list, source_github = TRUE){
       if(i == length(query_list)){colnames(sidra_dataset) = c('data', names(query_list))}
       },
       
-      error = function(e){stop('Uma ou mais funções não estão disponíveis ou não há conexão de internet. Verifique sua conexão ou importe as funções de um diretório local.', call. = FALSE)}
+      error = function(e){stop('Uma ou mais variáveis não estão disponíveis ou a conexão com a API está falhando. Verifique se o código da série e outros parâmetros foram devidamente especificados. Verifique também sua conexão.', call. = FALSE)}
     )
   }
   
