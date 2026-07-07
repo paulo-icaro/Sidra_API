@@ -40,7 +40,7 @@ sidra_url = function(table, time_interval, variables, territorial_perspective, t
   if(is.null(territorial_level)){territorial_level = NULL} else {territorial_level = paste0('/', territorial_level)}
   
   # Header (Optional)
-  if(is.null(headers)||headers == FALSE){headers = 'h/n/'} else if(headers == TRUE){headers = paste0('h/y/', header)} else {message('Opção inválida para o argumento header. Insira TRUE, FALSE ou NULL.')}
+  if(is.null(headers)||headers == FALSE){headers = '/h/n'} else if(headers == TRUE){headers = paste0('/h/y', header)} else {message('Opção inválida para o argumento header. Insira TRUE, FALSE ou NULL.\n')}
   
   # Field (Optional)
   if(is.null(fields)){fields = NULL} else {fields = paste0('/', fields)}
