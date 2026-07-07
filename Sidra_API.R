@@ -37,7 +37,7 @@ sidra_api = function(url, httr = TRUE){
       
       # --- Fail Case --- #
       if(flag == 3 && is.null(api_connection)){
-        message('Falha ao conectar com a API. Verifique sua conexão de internet.')
+        message('Falha ao conectar com a API. A URL pode ter sido especificada incorretamente ou a conexão com a API falhou.')
       } else { 
         message('A API pode estar indisponível no momento. Tente novamente mais tarde.')}
     }
@@ -73,7 +73,7 @@ sidra_api = function(url, httr = TRUE){
       
       # --- Fail Case --- #
       if(flag == 3 && is.null(api_connection)){
-        message('Falha ao conectar com o API. Verifique sua conexão de internet.')
+        message('Falha ao conectar com a API. A URL pode ter sido especificada incorretamente ou a conexão com a API falhou.')
       } else { 
         message('A API pode estar indisponível no momento. Tente novamente mais tarde.')}
     }
