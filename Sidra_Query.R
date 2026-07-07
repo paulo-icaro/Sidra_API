@@ -41,7 +41,7 @@ sidra_query = function(query_list, source_github = TRUE){
   # --- Data Extraction --- #
   # ----------------------- #
   for(i in seq_along(query_list)){
-    message(paste0('Extraindo ', '"',  names(query_list[i]), '"'))
+    message(paste0('Extraindo ', '"',  names(query_list[i]), '"\n'))
     
     tryCatch(expr = {
       
